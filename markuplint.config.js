@@ -6,13 +6,20 @@ module.exports = {
         // プラグインがAngularの構文を評価した結果に対してMarkuplintを実行
         config: {
           extends: ["markuplint:recommended"],
+          rules: {
+            "required-h1": false,
+            "invalid-attr": {
+              options: {
+                ignoreAttrNamePrefix: ["app", "ng"],
+                allowAttrs: ["formgroup"],
+              },
+            },
+          },
           nodeRules: [
             {
-              regexSelector: {
-                attrName: "/^ng+$/",
-              },
+              selector: "img",
               rules: {
-                "invalid-attr": false,
+                "required-attr": ["src", "alt"],
               },
             },
           ],
